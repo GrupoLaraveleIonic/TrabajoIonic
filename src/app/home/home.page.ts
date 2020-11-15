@@ -7,6 +7,12 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
+  darkMode: boolean = false;
   constructor() {}
+
+  applydarkMode(){
+    this.darkMode = !this.darkMode;
+    document.body.classList.toggle('dark');
+  }
 
 }

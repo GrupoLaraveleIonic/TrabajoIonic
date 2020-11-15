@@ -21,4 +21,7 @@ export class LoginPage implements OnInit {
       this.router.navigate(['/home']);
     }).catch(err => alert('Los datos son incorrectos o no existen'));
   } 
+  getEmail(){
+    return this.email;
+  }
 }

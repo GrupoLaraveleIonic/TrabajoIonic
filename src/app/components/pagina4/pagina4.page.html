@@ -1,16 +1,23 @@
 <ion-header>
   <ion-toolbar color="primary">
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/home"></ion-back-button>
+      <ion-back-button defaultHref="/home" router-direction="root"></ion-back-button>
     </ion-buttons>
-    <ion-title>pagina4</ion-title>
+    <ion-title>Asistencias</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true" class="ion-padding">
+  <ion-label color="primary">{{viewTitle}}</ion-label>
+  <ion-buttons class="izquierda">
+   <ion-button [disabled]="isToday" (click)="today()" color="primary">Hoy</ion-button>
+   <ion-button (click)="addNewFJ()" color="primary">Falta justificada</ion-button>
+   <ion-button (click)="addNewFI()" color="primary">Falta injustificada</ion-button>
+  </ion-buttons>
   <calendar [eventSource]="eventSource"
       [calendarMode]="calendar.mode"
       [currentDate]="calendar.currentDate"
+      [markDisabled]="markDisabled"
       (onCurrentDateChanged)="onCurrentDateChanged($event)"
       (onRangeChanged)="reloadSource(startTime, endTime)"
       (onEventSelected)="onEventSelected($event)"
