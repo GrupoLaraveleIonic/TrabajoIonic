@@ -8,12 +8,15 @@ import { Pagina4PageRoutingModule } from './pagina4-routing.module';
 
 import { Pagina4Page } from './pagina4.page';
 
+import { NgCalendarModule  } from 'ionic2-calendar';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    Pagina4PageRoutingModule
+    Pagina4PageRoutingModule,
+    NgCalendarModule
   ],
   declarations: [Pagina4Page]
 })

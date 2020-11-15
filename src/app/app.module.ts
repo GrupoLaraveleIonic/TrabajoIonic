@@ -13,6 +13,8 @@ import { firebaseConfig} from '../environments/environment';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 
+import { NgCalendarModule  } from 'ionic2-calendar';
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -21,7 +23,8 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
     IonicModule.forRoot(), 
     AppRoutingModule,
     AngularFireModule.initializeApp(firebaseConfig),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    NgCalendarModule
   ],
   providers: [
     StatusBar,
