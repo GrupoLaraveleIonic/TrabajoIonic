@@ -19,9 +19,4 @@ export class HomePage {
   OnLogout(){
     this.authservice.logout();
   }
-
-  irP1(){
-    this.router.navigate(['/Pagina1'])
-  }
-
 }
