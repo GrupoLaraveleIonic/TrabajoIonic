@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { AuthService } from "../services/auth.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-home',
@@ -8,11 +10,18 @@ import { Component } from '@angular/core';
 export class HomePage {
 
   darkMode: boolean = false;
-  constructor() {}
+  constructor( public authservice: AuthService, private router : Router ) {}
 
   applydarkMode(){
     this.darkMode = !this.darkMode;
     document.body.classList.toggle('dark');
+  }
+  OnLogout(){
+    this.authservice.logout();
+  }
+
+  irP1(){
+    this.router.navigate(['/Pagina1'])
   }
 
 }

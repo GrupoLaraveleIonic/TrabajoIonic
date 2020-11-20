@@ -14,7 +14,8 @@
    <ion-button (click)="addNewFJ()" color="primary">Falta justificada</ion-button>
    <ion-button (click)="addNewFI()" color="primary">Falta injustificada</ion-button>
   </ion-buttons>
-  <calendar [eventSource]="eventSource"
+  <calendar 
+      [eventSource]="eventSource"
       [calendarMode]="calendar.mode"
       [currentDate]="calendar.currentDate"
       [markDisabled]="markDisabled"

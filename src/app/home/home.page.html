@@ -3,14 +3,14 @@
     <ion-title>
       Página principal
     </ion-title>
-    <ion-icon slot="end" name="moon"></ion-icon>
+    <ion-button slot="end" (click)="OnLogout()"><ion-icon name="log-out-outline"></ion-icon>Desconectarse</ion-button>
     <ion-toggle slot="end" [ngModel]="darkMode" (ionChange)="applydarkMode()"></ion-toggle>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true" class="ion-padding">
   
-    <ion-card href="pagina2">
+    <ion-card (click)="irP1()">
       <ion-card-header class="centrar">
         <ion-card-subtitle><img class="icon" src="assets/fichas.png" alt="imagen Fichas"></ion-card-subtitle>
         <ion-card-title>Listado de fichas <ion-icon name="book-outline"></ion-icon></ion-card-title>

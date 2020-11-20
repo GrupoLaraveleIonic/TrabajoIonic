@@ -52,17 +52,17 @@ export class Pagina4Page implements OnInit {
   }
 
   constructor(private db: AngularFirestore, private authservice : AuthService,) {
-    this.db.collection('users/' + this.userUid + '/events').snapshotChanges().subscribe(colSnap => {
-      this.eventSource = [];
-      colSnap.forEach(snap => {
-        let event:any = snap.payload.doc.data();
-        event.id = snap.payload.doc.id;
-        event.startTime = event.startTime.toDate();
-        event.endTime = event.endTime.toDate();
-        console.log(event);
-        this.eventSource.push(event);
-      });
-    });
+    this.db.collection(this.userUid +`events`).snapshotChanges().subscribe(colSnap => {
+			this.eventSource = [];
+			colSnap.forEach(snap => {
+				const event: any = snap.payload.doc.data();
+				event.id = snap.payload.doc.id;
+				event.startTime = event.startTime.toDate();
+				event.endTime = event.endTime.toDate();
+				console.log(event);
+				this.eventSource.push(event);
+			});
+		});
   }
 
   addNewFJ() {
@@ -75,7 +75,7 @@ export class Pagina4Page implements OnInit {
       endTime: end,
       allDay: true
     }
-    this.db.collection('users/' + this.userUid + '/events').add(event);
+    this.db.collection(this.userUid + '/events').add(event);
   }
   addNewFI() {
     let start = this.selectedDate;
@@ -87,7 +87,7 @@ export class Pagina4Page implements OnInit {
       endTime: end,
       allDay: true
     }
-    this.db.collection('users/' + this.userUid + '/events').add(event);
+    this.db.collection(this.userUid + '/events').add(event);
   }
 
   markDisabled = (date: Date) => {
