@@ -7,9 +7,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class Pagina2Page implements OnInit {
 
+  customPickerOptions;
+  customDate;
+  fechaDesde: Date = new Date();
+  fechaHasta: Date = new Date();
   constructor() { }
 
   ngOnInit() {
-  }
+    this.customPickerOptions = {
+      buttons: [{
+      text: 'Save',
+      handler: ( evento ) => console.log(evento)
+      }, {
+      text: 'Log',
+      handler: () => {
+      console.log('Clicked Log. Do not Dismiss.');
+      return false;
+      }
+      }]
+    };
 
+
+  // selecFecha(event){
+  //   console.log('Date', new Date(event.detail.value));
+  // }
+  }
 }

@@ -3,10 +3,35 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/home"></ion-back-button>
     </ion-buttons>
-    <ion-title>pagina2</ion-title>
+    <ion-title>Listado de fichas</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-item>
+    <ion-label>Desde</ion-label>
+    <ion-datetime [pickerOptions]="customPickerOptions"
+    [(ngModel)]="customDate">
+    </ion-datetime>
+   </ion-item>
+   
+
+
+  <!-- <ion-item>
+    <ion-datetime placeholder="Desde"
+    display-format="YYYY MMMM DD"
+    cancelText="Cancelar!!"
+    [ngModel]="selecFecha.toISOString()"
+    (ionChange)=selecFecha($event)>
+   </ion-datetime>
+  </ion-item>
+  <ion-item>
+    <ion-datetime placeholder="Hasta"
+    display-format="YYYY MMMM DD"
+    cancelText="Cancelar!!"
+    [ngModel]="selecFecha.toISOString()"
+    (ionChange)=selecFecha($event)>
+   </ion-datetime>
+  </ion-item> -->
 
 </ion-content>
