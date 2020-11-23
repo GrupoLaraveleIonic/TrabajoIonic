@@ -8,28 +8,29 @@ import { Component, OnInit } from '@angular/core';
 export class Pagina2Page implements OnInit {
 
   customPickerOptions;
-  customDate;
   fechaDesde: Date = new Date();
   fechaHasta: Date = new Date();
   constructor() { }
 
   ngOnInit() {
-    this.customPickerOptions = {
+    this.customPickerOptions =  {
       buttons: [{
-      text: 'Save',
+      text: 'Guardar',
       handler: ( evento ) => console.log(evento)
       }, {
-      text: 'Log',
-      handler: () => {
-      console.log('Clicked Log. Do not Dismiss.');
-      return false;
-      }
-      }]
-    };
-
-
-  // selecFecha(event){
-  //   console.log('Date', new Date(event.detail.value));
-  // }
+        text: 'Cancelar',
+        icon: 'close',
+        role: 'cancelar', // Este role hace que si pinchamos fuera se ejecute
+        handler: () => {
+        console.log('Cancelar clicked');
+        }
+        }
+      ]
+     };
   }
-}
+      selecFecha(event) {
+        console.log('Date', new Date(event.detail.value));
+       }
+
+  }
+

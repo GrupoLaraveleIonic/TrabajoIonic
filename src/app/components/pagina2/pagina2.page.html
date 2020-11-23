@@ -8,30 +8,33 @@
 </ion-header>
 
 <ion-content>
-  <ion-item>
-    <ion-label>Desde</ion-label>
-    <ion-datetime [pickerOptions]="customPickerOptions"
-    [(ngModel)]="customDate">
-    </ion-datetime>
-   </ion-item>
-   
+  <ion-list-header>
 
+    <ion-label class="fa fa-align-center" aria-hidden="true">Seleccione las fechas</ion-label>
 
-  <!-- <ion-item>
-    <ion-datetime placeholder="Desde"
-    display-format="YYYY MMMM DD"
-    cancelText="Cancelar!!"
-    [ngModel]="selecFecha.toISOString()"
-    (ionChange)=selecFecha($event)>
-   </ion-datetime>
-  </ion-item>
-  <ion-item>
-    <ion-datetime placeholder="Hasta"
-    display-format="YYYY MMMM DD"
-    cancelText="Cancelar!!"
-    [ngModel]="selecFecha.toISOString()"
-    (ionChange)=selecFecha($event)>
-   </ion-datetime>
-  </ion-item> -->
+  </ion-list-header>
+  <ion-list>
+    <ion-row class="top-20">
+      <ion-col>
+        <ion-item>
+          <ion-label> Desde </ion-label>
+          <ion-datetime placeholder="null" [pickerOptions]="customPickerOptions" 
+             min="2010-01-01" max="2021-12-31" [ngModel]="fechaDesde.toISOString()"
+            (ionChange)=selecFecha($event)>
+          </ion-datetime>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+
+          <ion-label> Hasta </ion-label>
+          <ion-datetime placeholder="null" [pickerOptions]="customPickerOptions" 
+             min="2010-01-01" max="2021-12-31" [ngModel]="fechaHasta.toISOString()"
+            (ionChange)=selecFecha($event)>
+          </ion-datetime>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-list>
 
 </ion-content>
