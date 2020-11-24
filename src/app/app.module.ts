@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
+// prueba
+import { HttpClientModule} from '@angular/common/http';
+
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
@@ -21,13 +24,15 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
-    BrowserModule, 
-    IonicModule.forRoot(), 
+    BrowserModule,
+    IonicModule.forRoot(),
     AppRoutingModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireAuthModule,
     NgCalendarModule,
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    // prueba
+    HttpClientModule,
   ],
   providers: [
     StatusBar,
