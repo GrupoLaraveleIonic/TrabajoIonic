@@ -12,7 +12,7 @@
 
 <ion-content>
   <ion-fab  vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button href="pagina3">
+    <ion-fab-button routerLink="/pagina3">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
@@ -44,14 +44,13 @@
   </ion-list-header>
 
   <ion-list>
-    <ion-item-sliding *ngFor="let usuario of usuarios | async">
+    <ion-item-sliding *ngFor="let worksheet of worksheets">
       <ion-item>
         <ion-label>
-          <h3>{{ usuario.name }}</h3>
-          <p>{{ usuario.email }}</p>
+          <h3>{{ worksheet.date }}</h3>
         </ion-label>
         <ion-label slot="end" text-right>
-          {{ usuario.phone }}
+          {{ worksheet.description }}
         </ion-label>
       </ion-item>
     </ion-item-sliding>

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { worksheet } from "../../models/worksheets.interface"
+import { DatabaseService } from "../../services/database.service"
+
 import { Observable } from 'rxjs';
 import { DataService } from '../../services/data.service';
 
@@ -12,32 +15,16 @@ export class Pagina2Page implements OnInit {
   customPickerOptions;
   fechaDesde: Date = new Date();
   fechaHasta: Date = new Date();
-  constructor(private dataService: DataService) { }
+  constructor(private database: DatabaseService) { }
 
-  usuarios: Observable<any>;
+  worksheets: worksheet[];
 
   ngOnInit() {
-// prueba
-    this.usuarios = this.dataService.getUsuarios();
-
-    this.customPickerOptions =  {
-      buttons: [{
-      text: 'Guardar',
-      handler: ( evento ) => console.log(evento)
-      }, {
-        text: 'Cancelar',
-        icon: 'close',
-        role: 'cancelar', // Este role hace que si pinchamos fuera se ejecute
-        handler: () => {
-        console.log('Cancelar clicked');
-        }
-        }
-      ]
-     };
-  }
-      selecFecha(event) {
-        console.log('Date', new Date(event.detail.value));
-       }
+    this.database.getWorksheets().subscribe(res=> {
+      this.worksheets=res;
+      console.log(res);
+    });
 
   }
 
+}
