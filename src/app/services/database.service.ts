@@ -15,8 +15,8 @@ export class DatabaseService {
   constructor(db: AngularFirestore) {
     this.worksheetCollection = db.collection<worksheet>('worksheet');
     this.worksheets = this.worksheetCollection.snapshotChanges().pipe(map(
-      actions=>{
-        return actions.map(a=>{
+      actions => {
+        return actions.map(a => {
           const id = a.payload.doc.id;
           const data = a.payload.doc.data();
           return {id, ...data};

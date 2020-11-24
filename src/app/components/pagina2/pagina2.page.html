@@ -39,15 +39,15 @@
     </ion-row>
   </ion-list>
   <ion-list-header>
-    <ion-label >Dia</ion-label>
-    <ion-label >Actividad</ion-label>
+    <ion-label><h1>Día</h1></ion-label>
+    <ion-label ><h1>Actividades</h1></ion-label>
   </ion-list-header>
 
   <ion-list>
     <ion-item-sliding *ngFor="let worksheet of worksheets">
       <ion-item>
         <ion-label>
-          <h3>{{ worksheet.date }}</h3>
+          <h3>{{ worksheet.date}}</h3>
         </ion-label>
         <ion-label slot="end" text-right>
           {{ worksheet.description }}

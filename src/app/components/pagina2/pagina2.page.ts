@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { worksheet } from "../../models/worksheets.interface"
-import { DatabaseService } from "../../services/database.service"
+import { worksheet } from '../../models/worksheets.interface';
+import { DatabaseService } from '../../services/database.service';
 
 import { Observable } from 'rxjs';
 import { DataService } from '../../services/data.service';
@@ -18,13 +18,15 @@ export class Pagina2Page implements OnInit {
   constructor(private database: DatabaseService) { }
 
   worksheets: worksheet[];
-
+  myDate = new Date().toISOString();
   ngOnInit() {
-    this.database.getWorksheets().subscribe(res=> {
-      this.worksheets=res;
+    this.database.getWorksheets().subscribe(res => {
+      this.worksheets = res;
       console.log(res);
     });
 
   }
-
+  selecFecha(event) {
+    console.log('Date', new Date(event.detail.value));
+   }
 }
