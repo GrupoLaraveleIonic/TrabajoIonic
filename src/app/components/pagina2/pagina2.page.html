@@ -8,33 +8,52 @@
 </ion-header>
 
 <ion-content>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
   <ion-list-header>
-
     <ion-label class="fa fa-align-center" aria-hidden="true">Seleccione las fechas</ion-label>
-
   </ion-list-header>
   <ion-list>
     <ion-row class="top-20">
       <ion-col>
         <ion-item>
           <ion-label> Desde </ion-label>
-          <ion-datetime placeholder="null" [pickerOptions]="customPickerOptions" 
-             min="2010-01-01" max="2021-12-31" [ngModel]="fechaDesde.toISOString()"
-            (ionChange)=selecFecha($event)>
+          <ion-datetime placeholder="null" [pickerOptions]="customPickerOptions" min="2010-01-01" max="2021-12-31"
+            [ngModel]="fechaDesde.toISOString()" (ionChange)=selecFecha($event)>
           </ion-datetime>
         </ion-item>
       </ion-col>
       <ion-col>
         <ion-item>
-
           <ion-label> Hasta </ion-label>
-          <ion-datetime placeholder="null" [pickerOptions]="customPickerOptions" 
-             min="2010-01-01" max="2021-12-31" [ngModel]="fechaHasta.toISOString()"
-            (ionChange)=selecFecha($event)>
+          <ion-datetime placeholder="null" [pickerOptions]="customPickerOptions" min="2010-01-01" max="2021-12-31"
+            [ngModel]="fechaHasta.toISOString()" (ionChange)=selecFecha($event)>
           </ion-datetime>
         </ion-item>
       </ion-col>
     </ion-row>
+  </ion-list>
+  <ion-list-header>
+    <ion-label aria-hidden="true">Dia</ion-label>
+    <ion-label aria-hidden="true">Actividad</ion-label>
+  </ion-list-header>
+
+  <ion-list>
+    <ion-item-sliding *ngFor="let usuario of usuarios | async">
+      <ion-item>
+        <ion-label>
+          <h3>{{ usuario.name }}</h3>
+          <p>{{ usuario.email }}</p>
+        </ion-label>
+        <ion-label slot="end" text-right>
+          {{ usuario.phone }}
+        </ion-label>
+      </ion-item>
+    </ion-item-sliding>
   </ion-list>
 
 </ion-content>
