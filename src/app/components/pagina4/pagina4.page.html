@@ -1,7 +1,10 @@
 <ion-header>
   <ion-toolbar color="primary">
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/home" router-direction="root"></ion-back-button>
+      <ion-back-button
+        defaultHref="/home"
+        router-direction="root"
+      ></ion-back-button>
     </ion-buttons>
     <ion-title>Asistencias</ion-title>
     <ion-buttons slot="end">
@@ -11,22 +14,51 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" class="ion-padding">
-  <ion-label color="primary">{{viewTitle}}</ion-label>
   <ion-buttons class="izquierda">
-   <ion-button [disabled]="isToday" (click)="today()" color="primary">Hoy</ion-button>
-   <ion-button (click)="addNewFJ()" color="primary">Falta justificada</ion-button>
-   <ion-button (click)="addNewFI()" color="primary">Falta injustificada</ion-button>
+    <ion-button [disabled]="isToday" (click)="today()" color="primary"
+      >Hoy</ion-button
+    >
   </ion-buttons>
-  <calendar 
-      [eventSource]="eventSource"
-      [calendarMode]="calendar.mode"
-      [currentDate]="calendar.currentDate"
-      [markDisabled]="markDisabled"
-      (onCurrentDateChanged)="onCurrentDateChanged($event)"
-      (onRangeChanged)="reloadSource(startTime, endTime)"
-      (onEventSelected)="onEventSelected($event)"
-      (onTitleChanged)="onViewTitleChanged($event)"
-      (onTimeSelected)="onTimeSelected($event)"
-      step="30">
+  <ion-row>
+    <!-- Move back one screen of the slides -->
+    <ion-col>
+      <ion-button fill="clear" (click)="back()">
+        <ion-icon name="arrow-back" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-col>
+
+    <ion-col class="ion-text-center">
+      <h2 color="primary">{{ viewTitle }}</h2>
+    </ion-col>
+
+    <!-- Move forward one screen of the slides -->
+    <ion-col>
+      <ion-button fill="clear" (click)="next()">
+        <ion-icon name="arrow-forward" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-col>
+  </ion-row>
+
+  <calendar
+    [eventSource]="eventSource"
+    [calendarMode]="calendar.mode"
+    [currentDate]="calendar.currentDate"
+    [markDisabled]="markDisabled"
+    (onCurrentDateChanged)="onCurrentDateChanged($event)"
+    (onRangeChanged)="reloadSource(startTime, endTime)"
+    (onEventSelected)="onEventSelected($event)"
+    (onTitleChanged)="onViewTitleChanged($event)"
+    (onTimeSelected)="onTimeSelected($event)"
+    step="30"
+  >
   </calendar>
+  <ion-item>
+    <ion-buttons>
+      <ion-label>Falta: </ion-label>
+      <ion-button (click)="addNewFJ()" color="primary">justificada</ion-button>
+      <ion-button (click)="addNewFI()" color="primary"
+        >injustificada</ion-button
+      ></ion-buttons
+    ></ion-item
+  >
 </ion-content>

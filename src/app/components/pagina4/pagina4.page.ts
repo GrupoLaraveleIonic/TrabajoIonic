@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { CalendarComponent } from 'ionic2-calendar';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -12,18 +13,25 @@ export class Pagina4Page implements OnInit {
 
   isToday: boolean;
   viewTitle;
-
-  userUid : string;
-
-  today() {
-    this.calendar.currentDate = new Date();
-  }
   calendar = {
     mode: 'month',
     currentDate: new Date(),
   };
   selectedDate = new Date();
+  @ViewChild(CalendarComponent) myCal : CalendarComponent;
 
+  userUid : string;
+
+
+  today() {
+    this.calendar.currentDate = new Date();
+  }
+  next(){
+    this.myCal.slideNext();
+  }
+  back(){
+    this.myCal.slidePrev();
+  }
   onViewTitleChanged(title) {
     this.viewTitle = title;
   }
@@ -52,7 +60,7 @@ export class Pagina4Page implements OnInit {
   }
 
   constructor(private db: AngularFirestore, private authservice : AuthService,) {
-    this.db.collection(this.userUid +`events`).snapshotChanges().subscribe(colSnap => {
+    this.db.collection('users' + this.userUid + 'events').snapshotChanges().subscribe(colSnap => {
 			this.eventSource = [];
 			colSnap.forEach(snap => {
 				const event: any = snap.payload.doc.data();
@@ -75,7 +83,7 @@ export class Pagina4Page implements OnInit {
       endTime: end,
       allDay: true
     }
-    this.db.collection(this.userUid + '/events').add(event);
+    this.db.collection('/users/' + this.userUid + '/events').add(event);
   }
   addNewFI() {
     let start = this.selectedDate;
@@ -87,7 +95,7 @@ export class Pagina4Page implements OnInit {
       endTime: end,
       allDay: true
     }
-    this.db.collection(this.userUid + '/events').add(event);
+    this.db.collection('/users/' + this.userUid + '/events').add(event);
   }
 
   markDisabled = (date: Date) => {
