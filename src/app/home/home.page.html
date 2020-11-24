@@ -6,26 +6,24 @@
     <ion-buttons slot="end">
       <ion-menu-button auto-hide="false"></ion-menu-button>
     </ion-buttons>
-    <ion-button slot="end" (click)="OnLogout()"><ion-icon name="log-out-outline"></ion-icon>Desconectarse</ion-button>
-    <ion-toggle slot="end" [ngModel]="darkMode" (ionChange)="applydarkMode()"></ion-toggle>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true" class="ion-padding">
   
-    <ion-card>
+    <ion-card href="pagina2">
       <ion-card-header class="centrar">
         <ion-card-subtitle><img class="icon" src="assets/fichas.png" alt="imagen Fichas"></ion-card-subtitle>
         <ion-card-title>Listado de fichas <ion-icon name="book-outline"></ion-icon></ion-card-title>
       </ion-card-header>
     </ion-card>
-    <ion-card>
+    <ion-card href="pagina3">
       <ion-card-header class="centrar">
         <ion-card-subtitle><img class="icon" src="assets/ficha.png" alt="imagen Ficha"></ion-card-subtitle>
         <ion-card-title>Crea una ficha <ion-icon name="pencil-outline"></ion-icon></ion-card-title>
       </ion-card-header>
     </ion-card>
-    <ion-card class="centrar">
+    <ion-card class="centrar" href="pagina4">
       <ion-card-header>
         <ion-card-subtitle><img class="icon" src="assets/calendario.png" alt="imagen Calendario"></ion-card-subtitle>
         <ion-card-title>Asistencia <ion-icon name="calendar-outline"></ion-icon></ion-card-title>
