@@ -3,13 +3,32 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/home"></ion-back-button>
     </ion-buttons>
-    <ion-title>pagina3</ion-title>
+    <ion-title>Crear ficha</ion-title>
     <ion-buttons slot="end">
       <ion-menu-button auto-hide="false"></ion-menu-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
+<ion-content class="ion-padding">
+  <div style="text-align: center; padding-top: 5%">
+  
+    <ion-item>
+      <ion-label><b>Fecha ficha</b></ion-label>
+      <ion-datetime value="time" [(ngModel)]="date" required></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label><b>Actividad</b></ion-label>
+      <ion-textarea
+        name="description"
+        placeholder="Escribe aquí la actividad..."
+        autoGrow="true"
+        [(ngModel)]="description"
+        required
+      ></ion-textarea>
+    </ion-item>
+  </div>
+  <div style="text-align: center; padding-top: 5%">
+    <ion-button color="primary" type="submit" (click)="CrearFicha()">Crear ficha<ion-icon name="send" slot="end"></ion-icon></ion-button>
+  </div>
 </ion-content>

@@ -1,12 +1,13 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
-import { CalendarComponent } from 'ionic2-calendar';
-import { AuthService } from '../../services/auth.service';
+import { Component, OnInit, ViewChild } from "@angular/core";
+import { AngularFirestore } from "@angular/fire/firestore";
+import { CalendarComponent } from "ionic2-calendar";
+import { AuthService } from "../../services/auth.service";
+import { DatabaseService } from "../../services/database.service"
 
 @Component({
-  selector: 'app-pagina4',
-  templateUrl: './pagina4.page.html',
-  styleUrls: ['./pagina4.page.scss'],
+  selector: "app-pagina4",
+  templateUrl: "./pagina4.page.html",
+  styleUrls: ["./pagina4.page.scss"],
 })
 export class Pagina4Page implements OnInit {
   eventSource = [];
@@ -14,22 +15,21 @@ export class Pagina4Page implements OnInit {
   isToday: boolean;
   viewTitle;
   calendar = {
-    mode: 'month',
+    mode: "month",
     currentDate: new Date(),
   };
   selectedDate = new Date();
-  @ViewChild(CalendarComponent) myCal : CalendarComponent;
+  @ViewChild(CalendarComponent) myCal: CalendarComponent;
 
-  userUid : string;
-
+  userUid: string;
 
   today() {
     this.calendar.currentDate = new Date();
   }
-  next(){
+  next() {
     this.myCal.slideNext();
   }
-  back(){
+  back() {
     this.myCal.slidePrev();
   }
   onViewTitleChanged(title) {
@@ -37,13 +37,17 @@ export class Pagina4Page implements OnInit {
   }
 
   onEventSelected(event) {
-    console.log('Event selected:' + event.startTime + '-' + event.endTime + ',' + event.title);
+    console.log(
+      "Event selected:" +
+        event.startTime +
+        "-" +
+        event.endTime +
+        "," +
+        event.title
+    );
   }
 
   onTimeSelected(ev) {
-    //Borrar esto
-    console.log('Selected time: ' + ev.selectedTime + ', hasEvents: ' +
-      (ev.events !== undefined && ev.events.length !== 0) + ', disabled: ' + ev.disabled);
     this.selectedDate = ev.selectedTime;
   }
 
@@ -56,56 +60,56 @@ export class Pagina4Page implements OnInit {
 
   onRangeChanged(ev) {
     // Borrar esto
-    console.log('range changed: startTime: ' + ev.startTime + ', endTime: ' + ev.endTime);
+    console.log(
+      "range changed: startTime: " + ev.startTime + ", endTime: " + ev.endTime
+    );
   }
 
-  constructor(private db: AngularFirestore, private authservice : AuthService,) {
-    this.db.collection('users' + this.userUid + 'events').snapshotChanges().subscribe(colSnap => {
+  constructor(private db: AngularFirestore, private authservice: AuthService, au: DatabaseService) {
+    this.db.collection(`events`).snapshotChanges().subscribe(colSnap => {
 			this.eventSource = [];
 			colSnap.forEach(snap => {
 				const event: any = snap.payload.doc.data();
 				event.id = snap.payload.doc.id;
 				event.startTime = event.startTime.toDate();
 				event.endTime = event.endTime.toDate();
-				console.log(event);
 				this.eventSource.push(event);
 			});
 		});
+      
   }
 
   addNewFJ() {
     let start = this.selectedDate;
     let end = this.selectedDate;
-    end.setMinutes(start.getMinutes()+60);
     let event = {
-      title: 'Falta Justificada',
+      justificado: false,
       startTime: start,
       endTime: end,
-      allDay: true
-    }
-    this.db.collection('/users/' + this.userUid + '/events').add(event);
+      userid: this.userUid,
+    };
+    this.db.collection("events").add(event);
   }
   addNewFI() {
     let start = this.selectedDate;
     let end = this.selectedDate;
     end.setHours(start.getHours());
     let event = {
-      title: 'Falta Injustificada',
+      justificado: false,
       startTime: start,
       endTime: end,
-      allDay: true
-    }
-    this.db.collection('/users/' + this.userUid + '/events').add(event);
+      userid: this.userUid,
+    };
+    this.db.collection("events").add(event);
   }
 
   markDisabled = (date: Date) => {
     // Hace disabled sabados y domingos
-    return  (date.getDay()==6 || date.getDay()==0);
+    return date.getDay() == 6 || date.getDay() == 0;
   };
   ngOnInit() {
-    this.authservice.getUserAuth().subscribe(user=>{
-      this.userUid=user.uid;
+    this.authservice.getUserAuth().subscribe((user) => {
+      this.userUid = user.uid;
     });
   }
-
 }
