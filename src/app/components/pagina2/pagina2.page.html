@@ -11,49 +11,52 @@
 </ion-header>
 
 <ion-content>
-  <ion-fab  vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button routerLink="/pagina3">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
 
-  
+
   <ion-list>
     <ion-row class="top-20">
       <ion-col>
         <ion-item>
           <ion-label> Desde </ion-label>
-          <ion-datetime placeholder="null" [pickerOptions]="customPickerOptions" min="2010-01-01" max="2021-12-31"
-            [ngModel]="fechaDesde.toISOString()" (ionChange)=selecFecha($event)>
+          <ion-datetime [pickerOptions]="customPickerOptions" min="2010-01-01" max="2021-12-31"
+            (ionChange)=rangeDesde($event)>
           </ion-datetime>
         </ion-item>
       </ion-col>
       <ion-col>
         <ion-item>
           <ion-label> Hasta </ion-label>
-          <ion-datetime placeholder="null" [pickerOptions]="customPickerOptions" min="2010-01-01" max="2021-12-31"
-            [ngModel]="fechaHasta.toISOString()" (ionChange)=selecFecha($event)>
+          <ion-datetime [pickerOptions]="customPickerOptions" min="2010-01-01" max="2021-12-31"
+            (ionChange)=rangeHasta($event)>
           </ion-datetime>
         </ion-item>
       </ion-col>
     </ion-row>
   </ion-list>
   <ion-list-header>
-    <ion-label><h1>Día</h1></ion-label>
-    <ion-label ><h1>Actividades</h1></ion-label>
+    <ion-label>
+      <h1>Día</h1>
+    </ion-label>
+    <ion-label>
+      <h1>Actividades</h1>
+    </ion-label>
   </ion-list-header>
 
   <ion-list>
-    <ion-item-sliding *ngFor="let worksheet of worksheets">
-      <ion-item>
-        <ion-label>
-          <h3>{{ worksheet.date}}</h3>
-        </ion-label>
-        <ion-label slot="end" text-right>
-          {{ worksheet.description }}
-        </ion-label>
-      </ion-item>
-    </ion-item-sliding>
+    <ion-item *ngFor="let worksheet of worksheets">
+      <ion-label>
+        <h3>{{ worksheet.date  | date: 'dd-MM-yyyy  HH:mm:ss' }}</h3>
+      </ion-label>
+      <ion-label slot="end" text-right>
+        {{ worksheet.description }}
+      </ion-label>
+    </ion-item>
+
   </ion-list>
 
 </ion-content>
