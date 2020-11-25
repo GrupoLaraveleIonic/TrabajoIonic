@@ -32,13 +32,12 @@
     </ion-col>
 
     <!-- Move forward one screen of the slides -->
-    <ion-col>
+    <ion-col style="text-align: right">
       <ion-button fill="clear" (click)="next()">
         <ion-icon name="arrow-forward" slot="icon-only"></ion-icon>
       </ion-button>
     </ion-col>
   </ion-row>
-
   <calendar
     [eventSource]="eventSource"
     [calendarMode]="calendar.mode"

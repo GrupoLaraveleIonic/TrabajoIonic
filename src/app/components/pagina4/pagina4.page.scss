@@ -1,0 +1,13 @@
+:host ::ng-deep{
+    .event-detail-container{
+        display: none;
+    }
+}
+.eventStyle {
+    border-radius: 50%;
+    background-color: #ff944d;
+  }
+  .monthview-datetable td.monthview-primary-with-event {
+    background-color:#feb9c3 !important;
+    border-radius: 50%;
+  }
